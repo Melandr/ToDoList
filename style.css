@@ -9,3 +9,25 @@ body {
 h1 {
   text-align: center;
 }
+
+.flex-wrapper {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.add-task-wrapper {
+  display: flex;
+  width: 500px;
+  min-height: 40px;
+  align-items: center;
+  background-color: darkgoldenrod;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.input-wrapper {
+  width: 80%;
+}
