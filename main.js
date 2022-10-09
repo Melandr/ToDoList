@@ -76,7 +76,11 @@ const deleteTask = (index) => {
 };
 
 //обработчик клика по кнопке добавления задачи
-addTaskBtn.addEventListener("click", addNewTask);
+addTaskBtn.addEventListener("click", () => {
+  if (deskTaskInput.value.length > 0) {
+    addNewTask();
+  }
+});
 
 //обработчик нажатия на клавишу Enter для добавления задачи
 deskTaskInput.addEventListener("keydown", (event) => {
@@ -94,19 +98,6 @@ tasksWrapper.addEventListener("dragstart", (event) => {
 tasksWrapper.addEventListener("dragend", (event) => {
   event.target.classList.remove("selected");
 });
-
-const getNextElement = (cursorPosition, currentElement) => {
-  // Получаем объект с размерами и координатами
-  const currentElementCoord = currentElement.getBoundingClientRect();
-  // Находим вертикальную координату центра текущего элемента
-  const currentElementCenter = currentElementCoord.y + currentElementCoord.height / 2;
-
-  // Если курсор выше центра элемента, возвращаем текущий элемент
-  // В ином случае — следующий DOM-элемент
-  const nextElement = cursorPosition < currentElementCenter ? currentElement : currentElement.nextElementSibling;
-
-  return nextElement;
-};
 
 //обработчик логики перетаскивания
 tasksWrapper.addEventListener("dragover", (event) => {
@@ -134,6 +125,19 @@ tasksWrapper.addEventListener("dragover", (event) => {
 
   tasksWrapper.insertBefore(activeElement, nextElement);
 });
+
+const getNextElement = (cursorPosition, currentElement) => {
+  // Получаем объект с размерами и координатами
+  const currentElementCoord = currentElement.getBoundingClientRect();
+  // Находим вертикальную координату центра текущего элемента
+  const currentElementCenter = currentElementCoord.y + currentElementCoord.height / 2;
+
+  // Если курсор выше центра элемента, возвращаем текущий элемент
+  // В ином случае — следующий DOM-элемент
+  const nextElement = cursorPosition < currentElementCenter ? currentElement : currentElement.nextElementSibling;
+
+  return nextElement;
+};
 
 function addNewTask() {
   tasks.push(new Task(deskTaskInput.value));

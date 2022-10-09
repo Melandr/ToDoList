@@ -75,7 +75,7 @@ h1 {
 }
 
 .selected {
-  opacity: 0.8;
+  background-color: rgb(14, 97, 3);
 }
 
 .description {
